@@ -76,7 +76,6 @@ if __name__ == '__main__':
 
 # Пример 2: Ассинхронность с return внутри корутин
 
-
 import asyncio
 
 
