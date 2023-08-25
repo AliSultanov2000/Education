@@ -95,7 +95,7 @@ async def func2(x2: int):
 async def main():
     task1 = asyncio.create_task(func1(5))  # type(task1): '_asyncio.Task
     task2 = asyncio.create_task(func2(5))
-    tasks = [task2, task1]  # Дальнейший порядок обработки тасков хранится в этом списке. Сначала будет обработано task2
+    tasks = [task2, task1]   # Дальнейший порядок обработки тасков хранится в этом списке. Сначала будет обработано task2
     results = await asyncio.gather(*tasks)  # type(results): list
     print(results)
 
