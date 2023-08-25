@@ -97,7 +97,6 @@ async def main():
     task2 = asyncio.create_task(func2(5))
     tasks = [task2, task1]  # Дальнейший порядок обработки тасков хранится в этом списке. Сначала будет обработано task2
     results = await asyncio.gather(*tasks)  # type(results): list
-
     print(results)
 
 
