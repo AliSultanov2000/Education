@@ -61,7 +61,6 @@ git branch dev  - создаёт ветку dev
 git branch -d dev  - удаляет ветку dev
 git checkout -b dev  - создаёт ветку dev и переходит в неё 
 git checkout master  - переключаемся на ветку master
-git merge dev (находимся в ветке master)  - находясь в ветке master, перетаскиваем коммиты из dev в master
 
 
 СВЯЗЬ С УДАЛЕННЫМ РЕПОЗИТОРИЕМ (GitHub):
