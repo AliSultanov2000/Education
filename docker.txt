@@ -77,29 +77,28 @@ Dockerfile - файл с инструкциями для создания Docker
 !!! Также в Dockerfile можно загружать requirements.txt - т.е. набор библиотек для запуска приложения
 
 ТИПИЧНАЯ СТРУКТУРА Dockerfile-а:
-# copy the file with the necessary libraries that we want to install
-COPY ./requirements.txt /root/requirements.txt
 
-# update pip and install libraries from requirements, --ignore-installed - reinstall packages if they already exist
-RUN pip install --upgrade pip && \
-    pip install --ignore-installed -r /root/requirements.txt
+FROM python:alpine  # устанавливаем базовый образ python 
 
-# Cоздание рабочей директории внутри образа
-WORKDIR root/app
+WORKDIR /app  # cоздаём рабочую директорию внутри образа
 
-# Копирование всех файлов с текущей директории в рабочую директорию внутри образа (ПОСЛЕ ЭТОЙ КОМАНДЫ МЫ УЖЕ НАХОДИМСЯ В РАБОЧЕЙ ДИРЕКТОРИИ)
-COPY . root/app
+COPY ./requirements.txt /root/requirements.txt  # копируем все файлы которые хотим установить 
 
-# running the script, install train for a new project.py and make key_load_img: True in the params.yaml file
-CMD ["python", "model_pipeline.py"]
+RUN pip install tensorflow  # подгружаем tensorflow
+
+RUN pip install --ignore-installed -r /root/requirements.txt  # подгружаем все библиотеки из requirements.txt
+
+COPY . root/app  # копируем все файлы приложения в рабочую директорию внутрь образа
+
+CMD ["python", "model_pipeline.py"]  # запускаем на исполнение файл model_pipeline.py
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-Docker Compose - 
+Docker Compose - ПО, которое позволяет создавать и управлять сразу несколькими контейнерами на основании простых команд
 !!! ВАЖНО: Docker Compose позволяет для создания образов (и контейнеров) использовать декларативный подход, т.е. описываем желаемый результат (без использования docker run, build и тд, а используем инструкции более высокого уровня)
 !!! ВАЖНО: Инструкции для создания образов описываются в docker-compose.yml (НАЗВАНИЕ ДОЛЖНО БЫТЬ ИМЕННО ТАКОЕ!!!) файле
 !!! ВАЖНО: В Docker Compose все необходимые контейнеры запускаются одной командой 
 !!! ВАЖНО: В Docker Compose автоматически создаётся изолированная сеть для взаимодействия контейнеров
 !!! ВАЖНО: В Docker Compose можно подавать как готовый Dockerfile для создания образа, так и подать инструкцию в docker-compose.yml файл для скачивания готового образа, т.е. наличие Dockerfile-а не является обязательным!!!
-
+!!! ВАЖНО: 
 ТИПЧНАЯ СТРУКТУРА docker-compose.yml файла:
 
 version: '3'
