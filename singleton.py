@@ -1,4 +1,4 @@
-class Human:
+class Singleton:
     """Класс для демонстрации паттерна проектирования Singleton"""
     __instance = None  # В этой переменной будет храниться новый объект
     def __new__(cls, *args, **kwargs):  # перегружаем метод __new__ от родительского класса object
