@@ -6,6 +6,17 @@ class Singleton:
             cls.__instance = super().__new__(cls)  # Запускаем __new__ от object, в противном случае не запускаем от object
         return cls.__instance
 
+class Fabric:
+    pass
+
+class Facad:
+    pass
+
+class Adapter:
+    pass
+
+class Builder:
+    pass
 
 # Добавить остальные паттерны проектирования которые я знаю, а именно:
 # ФАБРИКА;
