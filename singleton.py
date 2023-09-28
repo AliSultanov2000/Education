@@ -8,7 +8,8 @@ class Singleton:
 
 class Fabric:
     """Класс для демонстрации паттерна проектирования Фабрика"""
-    pass
+    def __init__(self):
+        pass
     
 
 class Facad:
