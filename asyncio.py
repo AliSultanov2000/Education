@@ -93,7 +93,7 @@ async def func2(x2: int) -> str:
     return f'Результат вычисления куба числа {x2}: {x2 ** 3}'
 
 
-async def main() -> str:
+async def main() -> None:
     task1 = asyncio.create_task(func1(5))  # type(task1): '_asyncio.Task
     task2 = asyncio.create_task(func2(5))
     tasks = [task2, task1]   # Дальнейший порядок обработки тасков хранится в этом списке. Сначала будет обработано task2
