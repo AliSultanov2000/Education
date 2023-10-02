@@ -82,14 +82,14 @@ import asyncio
 async def func1(x1: int) -> str:
     """Ассинхронная функция для вычисления квадрата числа"""
     print('Начало работы функции func1')
-    await asyncio.sleep(5)
+    await asyncio.sleep(5)  # Ассинхронная остановка 
     return f'Результат вычисления квадрата числа {x1}: {x1 ** 2}'
 
 
 async def func2(x2: int) -> str:
     """Ассинхронная функция для вычисления куба числа"""
     print('Начало работы функции func2')
-    await asyncio.sleep(3)
+    await asyncio.sleep(3)  # Ассинхронная остановка 
     return f'Результат вычисления куба числа {x2}: {x2 ** 3}'
 
 
