@@ -27,7 +27,15 @@ class Builder:
 
     
 
+class Human:
+    def __init__(self, name, surname, age, city):
+        self.name = name
+        self.surname = surname
+        self.age = age
+        self.city = city
 
+  def __str__(self):
+      return f'Объект с названием {self.name} {self.surname}'
 
 
 # Добавить остальные паттерны проектирования которые я знаю, а именно:
