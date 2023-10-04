@@ -18,9 +18,11 @@ class Facad:
     def __init__(self, *args, **kwargs):
         self.args = *args
 
-class Adapter:
+class Adapter(Human):
     """Класс для демонстрации паттерна проктирования Адаптер"""
-    pass
+    def __init__(self, name, surname):
+        print(name)
+        print(surname)
 
 
 class Builder:
