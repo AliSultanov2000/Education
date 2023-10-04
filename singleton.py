@@ -8,14 +8,15 @@ class Singleton:
 
 class Fabric:
     """Класс для демонстрации паттерна проектирования Фабрика"""
-    def __init__(self):
-        pass
+    def __init__(self, f1, f2):
+        self.f1 = f1
+        self.f2 = f2 
     
 
 class Facad:
     """Класс для демонстрации паттерна проектирования Фасад"""
-    def __init__(self):
-        pass
+    def __init__(self, *args, **kwargs):
+        self.args = *args
 
 class Adapter:
     """Класс для демонстрации паттерна проктирования Адаптер"""
