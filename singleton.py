@@ -15,11 +15,7 @@ class Fabric:
 
 
 
-class Adapter(Human):
-    """Класс для демонстрации паттерна проктирования Адаптер"""
-    def __init__(self, name, surname):
-        print(name)
-        print(surname)
+
 
 
 class Builder:
