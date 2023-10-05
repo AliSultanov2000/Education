@@ -13,10 +13,7 @@ class Fabric:
         self.f2 = f2 
     
 
-class Facad:
-    """Класс для демонстрации паттерна проектирования Фасад"""
-    def __init__(self, *args, **kwargs):
-        self.args = *args
+
 
 class Adapter(Human):
     """Класс для демонстрации паттерна проктирования Адаптер"""
