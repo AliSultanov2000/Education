@@ -43,20 +43,21 @@
 
 import asyncio
 
+# Ассинхронная функция 1
 async def func1(x1: int) -> None:
     """Ассинхронная функция для вычисления квадрата числа"""
     print('Начало работы функции func1')
     await asyncio.sleep(5)
     print(f'Результат вычисления квадрата числа {x1}: {x1 ** 2}')
 
-
+# Ассинхронная фунция 2
 async def func2(x2: int) -> None:
     """Ассинхронная функция для вычисления куба числа"""
     print('Начало работы функции func2')
     await asyncio.sleep(3)
     print(f'Результат вычисления куба числа {x2}: {x2 ** 3}')
 
-
+# Главная ассинхронная функция для запуска
 async def main() -> None:
     task1 = asyncio.create_task(func1(5))  # type(task1): '_asyncio.Task
     task2 = asyncio.create_task(func2(5))
@@ -64,7 +65,7 @@ async def main() -> None:
     await task1
     await task2
 
-
+# Запуск ассинхронной программы
 if __name__ == '__main__':
     asyncio.run(main())
 
