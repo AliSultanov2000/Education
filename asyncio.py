@@ -101,6 +101,6 @@ async def main() -> None:
     results = await asyncio.gather(*tasks)  # type(results): list
     print(results)
 
-# Запуск программы с модуля
+# Запуск ассинхронной программы
 if __name__ == '__main__':
     asyncio.run(main())
