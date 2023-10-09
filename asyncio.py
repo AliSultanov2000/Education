@@ -269,8 +269,6 @@ class Model(nn.Module):
             p[..., :4] /= scale  # de-scale
             if flips == 2:
                 p[..., 1] = img_size[0] - p[..., 1]  # de-flip ud
-            elif flips == 3:
-                p[..., 0] = img_size[1] - p[..., 0]  # de-flip lr
         else:
             x, y, wh = p[..., 0:1] / scale, p[..., 1:2] / scale, p[..., 2:4] / scale  # de-scale
             if flips == 2:
