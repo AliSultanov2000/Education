@@ -19,7 +19,8 @@ import random, string
 
 
 def resize_img(path: str):
-    basewidth = 300
+    """Функция для изменения размера изображения"""
+    basewidth = 400
     img = Image.open(path)
     if img.size[1] > img.size[0]:
         wpercent = (basewidth/float(img.size[0]))
