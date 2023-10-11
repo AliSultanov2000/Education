@@ -72,7 +72,6 @@ class YoloDetect:
 		"""Загрузка модели YoLo с сохранёнными весами и архитектурой"""
 		weightsPath = self.model_path['weight']
 		configPath = self.model_path['config']
-		print("[INFO] loading YOLO from disk...")
 		net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
 		net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
 		net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA_FP16)
