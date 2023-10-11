@@ -166,9 +166,7 @@ class YoloDetect:
 				ret, frame = cap.read()
 				if not ret:
 						break
-				frame=cv2.resize(frame,None,fx=0.7,fy=0.7,
-												interpolation=cv2.INTER_AREA)
-				
+				frame=cv2.resize(frame,None,fx=0.7,fy=0.7, interpolation=cv2.INTER_AREA)
 				Outputs = self.detect_object(frame, layer_name)
 				boxes, confidences, label = self.get_boxes(Outputs, frame)
 				predict = {
