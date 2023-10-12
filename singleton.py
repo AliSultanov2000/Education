@@ -33,21 +33,6 @@ def resize_img(path: str):
     img.save(path, 'JPEG', quality=90)
 
 
-def randomword(length):
-  """Функция генерации рандомных слов"""
-  letters = string.ascii_lowercase
-  return ''.join(random.choice(letters) for i in range(length))
-
-
-def get_predict_name(out_dir, filetype):
-	"""Функция для получения имени"""
-	rand = randomword(7)
-	if filetype == 'jpg':
-		data = 'image'
-	else:
-		data = 'video'
-
-	return f'{out_dir}{data}_output_{rand}.{filetype}'
 
 
 class YoloDetect:
