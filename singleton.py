@@ -13,9 +13,10 @@ class Singleton:
 
 import cv2
 import numpy as np
+import scipy
 import os
 from PIL import Image
-import random
+import random, string
 
 
 def resize_img(path: str):
