@@ -15,7 +15,7 @@ import cv2
 import numpy as np
 import os
 from PIL import Image
-import random, string
+import random
 
 
 def resize_img(path: str):
@@ -34,11 +34,13 @@ def resize_img(path: str):
 
 
 def randomword(length):
+  """Функция генерации рандомных слов"""
   letters = string.ascii_lowercase
   return ''.join(random.choice(letters) for i in range(length))
 
 
 def get_predict_name(out_dir, filetype):
+	"""Функция для получения имени"""
 	rand = randomword(7)
 	if filetype == 'jpg':
 		data = 'image'
