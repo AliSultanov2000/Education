@@ -104,21 +104,17 @@ class YoloDetect:
 		label = []
 		for output in layerOutputs:
 			for detection in output:
-				scores = detection[5:]
-				classID = np.argmax(scores)
-				confidence = scores[classID]
-
-				if confidence > 0.5:
-                    
-					box = detection[0:4] * np.array([W, H, W, H])
-					(centerX, centerY, width, height) = box.astype("int")
-
-					x = int(centerX - (width / 2))
-					y = int(centerY - (height / 2))
-
-					boxes.append([x, y, int(width), int(height)])
-					confidences.append(float(confidence))
-					label.append(self.Object[classID])
+			     scores = detection[5:]
+			     classID = np.argmax(scores)
+			     confidence = scores[classID]
+			     if confidence > 0.5:
+				    box = detection[0:4] * np.array([W, H, W, H])
+				    (centerX, centerY, width, height) = box.astype("int")
+				    x = int(centerX - (width / 2))
+				    y = int(centerY - (height / 2))
+				    boxes.append([x, y, int(width), int(height)])
+				    confidences.append(float(confidence))
+				    label.append(self.Object[classID])
 		return boxes, confidences, label
 
 
@@ -185,7 +181,6 @@ class YoloDetect:
 						b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 		cap.release()
-
 
 
 
