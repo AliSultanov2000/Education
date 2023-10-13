@@ -8,6 +8,7 @@ class Singleton:
 
 
     
+# Класс для генерации фичей 
 
 class FeatureGenetator():
     """Генерация новых фич"""
@@ -105,4 +106,75 @@ class FeatureGenetator():
         X['year_cat'] = pd.cut(X['HouseYear'], bins=bins, labels=False)
 
         X['year_cat'].fillna(-1, inplace=True)
+        return X
+
+
+# Класс для предобработки данных
+
+class DataPreprocessing:
+    """Подготовка исходных данных"""
+
+    def __init__(self):
+        """Параметры класса"""
+        self.medians = None
+        self.kitchen_square_quantile = None
+        
+    def fit(self, X):
+        """Сохранение статистик"""       
+        # Расчет медиан
+        self.medians = X.median()
+        self.kitchen_square_quantile = X['KitchenSquare'].quantile(.975)
+    
+    def transform(self, X):
+        """Трансформация данных"""
+
+        # Rooms
+        X['Rooms_outlier'] = 0
+        X.loc[(X['Rooms'] == 0) | (X['Rooms'] >= 6), 'Rooms_outlier'] = 1
+        
+        X.loc[X['Rooms'] == 0, 'Rooms'] = 1
+        X.loc[X['Rooms'] >= 6, 'Rooms'] = self.medians['Rooms']
+        
+        # KitchenSquare
+        condition = (X['KitchenSquare'].isna()) \
+                    | (X['KitchenSquare'] > self.kitchen_square_quantile)
+        
+        X.loc[condition, 'KitchenSquare'] = self.medians['KitchenSquare']
+
+        X.loc[X['KitchenSquare'] < 3, 'KitchenSquare'] = 3
+        
+        # HouseFloor, Floor
+        X['HouseFloor_outlier'] = 0
+        X.loc[X['HouseFloor'] == 0, 'HouseFloor_outlier'] = 1
+        X.loc[X['Floor'] > X['HouseFloor'], 'HouseFloor_outlier'] = 1
+        
+        X.loc[X['HouseFloor'] == 0, 'HouseFloor'] = self.medians['HouseFloor']
+        
+        floor_outliers = X.loc[X['Floor'] > X['HouseFloor']].index
+        X.loc[floor_outliers, 'Floor'] = X.loc[floor_outliers, 'HouseFloor']\
+                                            .apply(lambda x: random.randint(1, x))
+        
+        # HouseYear
+        current_year = datetime.now().year
+        
+        X['HouseYear_outlier'] = 0
+        X.loc[X['HouseYear'] > current_year, 'HouseYear_outlier'] = 1
+        
+        X.loc[X['HouseYear'] > current_year, 'HouseYear'] = current_year
+        
+        # Healthcare_1
+        if 'Healthcare_1' in X.columns:
+            X.drop('Healthcare_1', axis=1, inplace=True)
+            
+        # LifeSquare
+        X['LifeSquare_nan'] = X['LifeSquare'].isna() * 1
+        condition = (X['LifeSquare'].isna()) & \
+                      (~X['Square'].isna()) & \
+                      (~X['KitchenSquare'].isna())
+        
+        X.loc[condition, 'LifeSquare'] = X.loc[condition, 'Square'] - X.loc[condition, 'KitchenSquare'] - 3
+        
+        
+        X.fillna(self.medians, inplace=True)
+        
         return X
