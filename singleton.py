@@ -25,20 +25,16 @@ class FeatureGenetator():
         self.district_size = None
         
     def fit(self, X, y=None):
-        
         X = X.copy()
-        
         # Binary features
         self.binary_to_numbers = {'A': 0, 'B': 1}
-        
         # DistrictID
         self.district_size = X['DistrictId'].value_counts().reset_index() \
                                .rename(columns={'index':'DistrictId', 'DistrictId':'DistrictSize'})
-                
+
         # Target encoding
         ## District, Rooms
         df = X.copy()
-        
         if y is not None:
             df['Price'] = y.values
             
