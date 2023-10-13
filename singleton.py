@@ -152,10 +152,8 @@ class DataPreprocessing:
         
         # HouseYear
         current_year = datetime.now().year
-        
         X['HouseYear_outlier'] = 0
         X.loc[X['HouseYear'] > current_year, 'HouseYear_outlier'] = 1
-        
         X.loc[X['HouseYear'] > current_year, 'HouseYear'] = current_year
         
         # Healthcare_1
@@ -169,8 +167,5 @@ class DataPreprocessing:
                       (~X['KitchenSquare'].isna())
         
         X.loc[condition, 'LifeSquare'] = X.loc[condition, 'Square'] - X.loc[condition, 'KitchenSquare'] - 3
-        
-        
         X.fillna(self.medians, inplace=True)
-        
         return X
