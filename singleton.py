@@ -38,3 +38,16 @@ pipocka4.transform(df100)
 # Проверка того, что в MinMaxScaler попали трансформированные данные
 print(f'Минимум: {pipocka4[1].data_min_}')
 print(f'Максимум: {pipocka4[1].data_max_}')
+
+def inverse_func(X):
+    return X - 30  # Функция инверсии
+
+transformer2 = FunctionTransformer(transf_func, inverse_func=inverse_func)  # Оборачиваем кастомную функцию transf_func в ООП класс FunctionTransformer
+
+pipocka5 = Pipeline([('transform', transformer2), ('norm', MinMaxScaler())])
+pipocka5.fit(df100)  # Вычисление статистик для MinMaxScaler
+pipocka5.inverse_transform(np.array([[0.  ],
+                                     [0.25],
+                                     [0.5 ],
+                                     [0.75],
+                                     [1.  ]]))
