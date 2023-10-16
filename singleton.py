@@ -28,3 +28,8 @@ transformer1 = FunctionTransformer(transf_func)  # Оборачиваем кас
 # def - ПРИМЕР 3 - для сравнения с ООП (СОВПАЛО). fit не запускаю так как нет обучения. Если запустить fit - ничего не изменится
 pipocka3 = Pipeline([('transform', transformer1)])
 pipocka3.transform(df100)
+
+# def - ПРИМЕР 4 - для сравнения с ООП (УРА, СОВПАЛО). fit запускаю так как MinMaxScaler нуждается в обучении (вычисление статистик). 
+pipocka4 = Pipeline([('transform', transformer1), ('norm', MinMaxScaler())])
+pipocka4.fit(df100)
+pipocka4.transform(df100)
