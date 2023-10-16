@@ -33,3 +33,8 @@ pipocka3.transform(df100)
 pipocka4 = Pipeline([('transform', transformer1), ('norm', MinMaxScaler())])
 pipocka4.fit(df100)
 pipocka4.transform(df100)
+
+
+# Проверка того, что в MinMaxScaler попали трансформированные данные
+print(f'Минимум: {pipocka4[1].data_min_}')
+print(f'Максимум: {pipocka4[1].data_max_}')
