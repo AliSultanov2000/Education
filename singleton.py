@@ -56,7 +56,6 @@ class Singleton:
 	def detect_stream(self, vid_path):
 		"""Функция детекции военных объектов в видеопотоке"""
 		cap = cv2.VideoCapture(vid_path)
-		layer_name = self.get_layer_name()
 		colors = np.random.uniform(0, 255, size=(len(self.Object), 3))
 		while True:
 				ret, frame = cap.read()
