@@ -16,38 +16,33 @@ class Singleton:
 # ВАЖНО 5: Если в кастомную функцию хотим добавить инверсивную функцию, то при обёртке необходимо явно указать эту инверсивную функцию, иначе инверсия работать не будет (ошибки тоже не будет!)
 
 
-from sklearn.preprocessing import FunctionTransformer
 
-def transf_func(X: pd.DataFrame, y=None):
-    return X + 30  # Добавляю + 30 чтобы сравнить с медианой из ООП ПРИМЕРА 1
+"""
+    Модуль для запуска локального сервера, в котором будет развёрнута модель YoLo для детекции военных объектов.
+    Деплой модели пока что на Flask, в перспективе - Django.
+"""
 
+from flask import Flask
+import os
+import sys
+from flask_cors import CORS
+from flask_mysqldb import MySQL, MySQLdb
 
-transformer1 = FunctionTransformer(transf_func)  # Оборачиваем кастомную функцию transf_func в ООП класс FunctionTransformer
+app = Flask(__name__)
 
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'loginflask'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/loginflask'
+app.config['SECRET_KEY'] = 'detection-system'
 
-# def - ПРИМЕР 3 - для сравнения с ООП (СОВПАЛО). fit не запускаю так как нет обучения. Если запустить fit - ничего не изменится
-pipocka3 = Pipeline([('transform', transformer1)])
-pipocka3.transform(df100)
+app.secret_key = os.urandom(24)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# def - ПРИМЕР 4 - для сравнения с ООП (УРА, СОВПАЛО). fit запускаю так как MinMaxScaler нуждается в обучении (вычисление статистик). 
-pipocka4 = Pipeline([('transform', transformer1), ('norm', MinMaxScaler())])
-pipocka4.fit(df100)
-pipocka4.transform(df100)
+import views
 
+if __name__ == "__main__":
+    app.run(debug=True)
 
-# Проверка того, что в MinMaxScaler попали трансформированные данные
-print(f'Минимум: {pipocka4[1].data_min_}')
-print(f'Максимум: {pipocka4[1].data_max_}')
-
-def inverse_func(X):
-    return X - 30  # Функция инверсии
-
-transformer2 = FunctionTransformer(transf_func, inverse_func=inverse_func)  # Оборачиваем кастомную функцию transf_func в ООП класс FunctionTransformer
-
-pipocka5 = Pipeline([('transform', transformer2), ('norm', MinMaxScaler())])
-pipocka5.fit(df100)  # Вычисление статистик для MinMaxScaler
-pipocka5.inverse_transform(np.array([[0.  ],
-                                     [0.25],
-                                     [0.5 ],
-                                     [0.75],
-                                     [1.  ]]))
+# os.system("clear-cache.sh")
