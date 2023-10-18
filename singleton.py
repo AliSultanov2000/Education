@@ -32,23 +32,5 @@ class Singleton:
 		return image
 
 
-	def detect_image(self, img_path):
-		"""Функция детекции военных объектов на изображении"""
-		layer_name = self.get_layer_name()
-		image = cv2.imread(img_path)
-		Outputs = self.detect_object(image, layer_name)
-		boxes, confidences, label = self.get_boxes(Outputs, image)
-		predict = {
-				'boxes' : boxes,
-				'conf'	: confidences,
-				'label'	: label
-		}
-		colors = np.random.uniform(0, 255, size=(len(self.Object), 3))
-		result = self.draw_box(image, predict, colors)
-		filename = get_predict_name(self.out_dir, 'jpg')
-		cv2.imwrite(filename, result, [cv2.IMWRITE_JPEG_QUALITY, 100])
 
-		outfile_name = os.path.basename(filename)
-		print('Image file finished.')
-		return outfile_name
 	
