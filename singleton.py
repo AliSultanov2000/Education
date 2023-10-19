@@ -37,3 +37,21 @@ class RemoveOutliers(TransformerMixin):
             X.loc[X[column] > upper_bound, column] = q_3
             X.loc[X[column] < lower_bound, column] = q_1
         return X
+
+
+from sklearn.base import TransformerMixin
+
+class DataTransform(TransformerMixin):
+    def __init__(self):
+        self.median = None
+
+    def fit(self, X: pd.DataFrame, y=None):
+        self.median = X.median()
+        return self
+        
+    def transform(self, X: pd.DataFrame) -> pd.DataFrame:
+        X = X + self.median
+        return X
+    
+
+df100 = pd.DataFrame([10, 20, 30, 40, 50])
