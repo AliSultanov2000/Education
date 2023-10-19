@@ -8,14 +8,7 @@ class Singleton:
 
 
     
-class RemoveOutliers(TransformerMixin):
-    """Класс для удаления выбросов интерквартильным методом"""
 
-    def __init__(self):
-        """init хранятся статистики по всем признакам!"""
-        self.q_25 = None   
-        self.q_50 = None 
-        self.q_75 = None
     
 
 
