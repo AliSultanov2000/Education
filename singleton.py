@@ -5,3 +5,11 @@ class Singleton:
         if cls.__instance is None:
             cls.__instance = super().__new__(cls)  # Запускаем __new__ от object, в противном случае не запускаем от object
         return cls.__instance
+
+
+from sklearn.feature_extraction.text import CountVectorizer 
+
+count_vectorizer1 = CountVectorizer()  # Реализует концепцию мешка слов
+vectors1 = count_vectorizer1.fit_transform(train_docs)  # Сначала запускается метод fit, а далее запускается метод transform, который return-ит вектор для каждого текста; При вызове fit получается вокабуляр слов
+vectors1
+
