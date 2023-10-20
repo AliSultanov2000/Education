@@ -15,3 +15,9 @@ vectors1
 
 # Посмотрим вокабуляр слов (на этих словах обучались). Индекс означает порядок слова в df 
 count_vectorizer1.vocabulary_
+
+
+# Пример predict-а, в нижних примерах можно также реализовать!
+predict = count_vectorizer1.transform(['Sun is sweet'])
+print(type(predict))  # Также sparse_matrix
+print(predict.toarray())
