@@ -105,35 +105,3 @@ async def main() -> None:
 if __name__ == '__main__':
     asyncio.run(main())
 
-
-
-
-# Create pipeline
-text_pipeline = Pipeline([
-                          ('vectorizer', TfidfVectorizer()), 
-                          ('lr', LogisticRegression())
-                         ])
-
-
-# Grid parametrs
-parametrs = {
-              'vectorizer__ngram_range': [(1, 1), (1, 2), (2, 2)],
-              'lr__C': [5, 10, 15, 20, 25, 50, 100, 200, 500],
-              'lr__penalty': ['l1', 'l2', 'elasticnet']
-            }
-
-# CrossValidation into GridSearch
-kf = KFold(n_splits=5, shuffle=True, random_state=50)
-
-# Create grid search (+ CrossValidation in GridSearch)
-grid_search = GridSearchCV(text_pipeline,
-                           parametrs,
-                           scoring='f1',
-                           cv=kf)
-
-
-# Start
-grid_search.fit(X_train, y_train)
-
-# Let's look the best param result in GridSearch + CrossValidation
-grid_search.best_score_
