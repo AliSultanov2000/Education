@@ -104,3 +104,12 @@ async def main() -> None:
 # Запуск ассинхронной программы
 if __name__ == '__main__':
     asyncio.run(main())
+
+
+
+
+# Create pipeline
+text_pipeline = Pipeline([
+                          ('vectorizer', TfidfVectorizer()), 
+                          ('lr', LogisticRegression())
+                         ])
