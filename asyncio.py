@@ -134,3 +134,6 @@ grid_search = GridSearchCV(text_pipeline,
 
 # Start
 grid_search.fit(X_train, y_train)
+
+# Let's look the best param result in GridSearch + CrossValidation
+grid_search.best_score_
