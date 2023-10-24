@@ -5,3 +5,12 @@ class Singleton:
         if cls.__instance is None:
             cls.__instance = super().__new__(cls)  # Запускаем __new__ от object, в противном случае не запускаем от object
         return cls.__instance
+
+
+
+try:
+    model = YOLO('venv/Lib/site-packages/ultralytics/yolov8n.pt')  # ---> Модель скачал вручную в папку ultralytics
+    # model = YOLO('yolov8n.pt')  # ---> Для загрузки модели из GitHub репозитория моделей YOLO
+    print('Модель YOLO успешна загружена')
+except Exception:
+    print('Возникла ошибка при загрузке модели')
