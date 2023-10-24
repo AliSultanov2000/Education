@@ -14,3 +14,12 @@ try:
     print('Модель YOLO успешна загружена')
 except Exception:
     print('Возникла ошибка при загрузке модели')
+
+# Run inference on an image
+results = model.predict(r"C:\Users\1NR_Operator_33\Desktop\754598754008015.jpeg")  # results list
+
+# Show the results
+for r in results:
+    im_array = r.plot()  # Plot a BGR numpy array of predictions
+    im = Image.fromarray(im_array[..., ::-1])  # RGB PIL image
+    im.show()  # show image
