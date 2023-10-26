@@ -18,3 +18,7 @@ example_data = np.array([[np.nan, 1, 2],
                             [5, 6, np.nan]])
 
 imp.fit_transform(example_data)
+
+
+# Импутация на тесте. Данные заполняются статистиками, которые вычислены на трейне. НА ТЕСТЕ СТАТИСТИКИ НЕ СЧИТАЮТСЯ!
+imp.transform([[np.nan, 1, 4], [10, np.nan, 11], [11, np.nan, 13]])
