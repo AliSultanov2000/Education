@@ -54,3 +54,13 @@ class RemoveOutliers(TransformerMixin):
             X.loc[X[column] > upper_bound, column] = q_3
             X.loc[X[column] < lower_bound, column] = q_1
         return X
+
+# StandardScaler
+
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()  # Создаём объект класса 
+
+scaler.fit(s_train_data)  # Обучение. На этом этапе вычисялем статистики. ПРИ ЭТОМ САМИ ДАННЫЕ НЕ МЕНЯЮТСЯ
+
+print(scaler.transform(s_test_data))  # Преобразование тестовых данных
