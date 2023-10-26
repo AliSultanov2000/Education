@@ -34,7 +34,16 @@ class RemoveOutliers(TransformerMixin):
         self.q_50 = None 
         self.q_75 = None
     
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import OneHotEncoder
 
+enc_data = pd.DataFrame(data=['Белый', 'Черный', 'Белый', 'Зеленый'], columns=['Цвет'])
+                    
+ohe = OneHotEncoder(sparse=False)
+ohe.fit_transform(enc_data)
+
+    
     def fit(self, X: pd.DataFrame, y=None): 
         """fit вычисляем статистики по всем признакам на train"""
         self.q_25 = X.quantile(q=0.25)
