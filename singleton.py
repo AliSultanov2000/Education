@@ -75,3 +75,14 @@ mms = MinMaxScaler()  # Создаём объект класса
 mms.fit(s_train_data)  # Обучение. На этом этапе вычисляем статистики. ПРИ ЭТОМ САМИ ДАННЫЕ НЕ МЕНЯЮТСЯ
 
 print(mms.transform(s_test_data))  # Преобразование тестовых данных
+
+
+# RobustScaler 
+
+from sklearn.preprocessing import RobustScaler
+
+rs = RobustScaler(quantile_range=(25.0, 75.0))
+
+rs.fit(s_train_data)
+
+print(rs.transform(s_test_data))  # Преобразование тестовых данных
