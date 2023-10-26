@@ -64,3 +64,14 @@ scaler = StandardScaler()  # Создаём объект класса
 scaler.fit(s_train_data)  # Обучение. На этом этапе вычисялем статистики. ПРИ ЭТОМ САМИ ДАННЫЕ НЕ МЕНЯЮТСЯ
 
 print(scaler.transform(s_test_data))  # Преобразование тестовых данных
+
+
+# MinMaxScaler 
+
+from sklearn.preprocessing import MinMaxScaler
+
+mms = MinMaxScaler()  # Создаём объект класса
+
+mms.fit(s_train_data)  # Обучение. На этом этапе вычисляем статистики. ПРИ ЭТОМ САМИ ДАННЫЕ НЕ МЕНЯЮТСЯ
+
+print(mms.transform(s_test_data))  # Преобразование тестовых данных
