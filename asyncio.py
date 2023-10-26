@@ -11,6 +11,15 @@
 # 2) Запрос к серверу
 # 3) Ожидание ввода/вывода пользователя
 
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import OneHotEncoder
+
+enc_data = pd.DataFrame(data=['Белый', 'Черный', 'Белый', 'Зеленый'], columns=['Цвет'])
+                    
+ohe = OneHotEncoder(sparse=False)
+ohe.fit_transform(enc_data)
+
 # АССИНХРОННОСТЬ ЧАЩЕ ВСЕГО ПРИМЕНЯЕТСЯ ПРИ РАБОТЕ С ВЕБОМ!
 
 # Общее время выполнения ассинхронной программы ограничивается временем выполнения самой долгой задачи.
