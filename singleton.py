@@ -86,3 +86,10 @@ rs = RobustScaler(quantile_range=(25.0, 75.0))
 rs.fit(s_train_data)
 
 print(rs.transform(s_test_data))  # Преобразование тестовых данных
+
+# Кодирование меток в числа 0, 1, 2...
+from sklearn.preprocessing import LabelEncoder
+
+enc_data = ['Белый', 'Чёрный', 'Жёлтый', 'Синий', 'Красный', 'Зелёный']
+color_le = LabelEncoder()
+color_le.fit_transform(enc_data)
