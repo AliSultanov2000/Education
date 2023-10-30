@@ -29,3 +29,15 @@ trans2= FunctionTransformer(change_num2)
 
 ct = ColumnTransformer([("tr1", trans1, ["age"]), ("tr2", trans2, ["balance"]), ("tr3", OneHotEncoder(), ['kernel', 'sex'])])
 ct.fit_transform(X)
+
+
+from sklearn.linear_model import LogisticRegression
+
+
+# Определяем данные
+X = pd.DataFrame({'age': [10, 20, 30, 40, 50, 60], 'balance': [400, 600, 800, 1000, 1200, 1400], 'kernel': ['White', 'Black', 'Green', 'Yellow', 'White', 'Black'], 'sex': ['male', 'female', 'male', 'female', 'male', 'female']})
+y = [1, 1, 1, 0, 0, 0]
+
+
+# Разделение данных
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, shuffle=42) 
