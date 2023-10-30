@@ -118,3 +118,11 @@ final_pipe = Pipeline([('preprocessor', preprocessor),  # Completely preprocessi
 
 # Посмотрим final_pipe
 final_pipe
+
+
+# Обучаем preprocessor, обучаем log-reg
+final_pipe.fit(X_train, y_train)
+
+
+# Запускаем на оценку score (transform, а в конце у estimator-а отрабатывает score)
+final_pipe.score(X_test, y_test)
