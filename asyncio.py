@@ -110,3 +110,11 @@ if __name__ == '__main__':
 # Как видим, признаковое пр-во не увеличилось (OneHotEncoder +)
 preprocessor.transform([[20, 650, 'White', 'male']])
 
+
+# Пайплайн для prod-a. Сделан на основе preprocessor-а (ColumnTransform)
+final_pipe = Pipeline([('preprocessor', preprocessor),  # Completely preprocessing num, text
+                       ('model', lr)])  # Final estimator - LogisticRegression
+
+
+# Посмотрим final_pipe
+final_pipe
