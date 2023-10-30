@@ -105,3 +105,8 @@ async def main() -> None:
 if __name__ == '__main__':
     asyncio.run(main())
 
+
+# preprocessor на других данных
+# Как видим, признаковое пр-во не увеличилось (OneHotEncoder +)
+preprocessor.transform([[20, 650, 'White', 'male']])
+
