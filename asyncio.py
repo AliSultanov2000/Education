@@ -210,3 +210,10 @@ trans2= FunctionTransformer(change_num2)
 
 ct = ColumnTransformer([("tr1", trans1, ["age"]), ("tr2", trans2, ["balance"]), ("tr3", OneHotEncoder(), ['kernel', 'sex'])])
 ct.fit_transform(X)
+
+# ГИПЕРВАЖНО: доступ к гиперпараметрам конвейера: --- ЭТО ВАЖНО ПРИ ПОИСКЕ ПО СЕТКЕ!!!
+# 1) Пишем сначала полное название шага конвейера
+# 2) Далее ставим __ 
+# 3) Пишем название гиперпараметра
+
+pipe1.set_params(clf__C=10)
