@@ -126,3 +126,63 @@ final_pipe.fit(X_train, y_train)
 
 # Запускаем на оценку score (transform, а в конце у estimator-а отрабатывает score)
 final_pipe.score(X_test, y_test)
+
+from sklearn.linear_model import LogisticRegression
+
+
+# Определяем данные
+X = pd.DataFrame({'age': [10, 20, 30, 40, 50, 60], 'balance': [400, 600, 800, 1000, 1200, 1400], 'kernel': ['White', 'Black', 'Green', 'Yellow', 'White', 'Black'], 'sex': ['male', 'female', 'male', 'female', 'male', 'female']})
+y = [1, 1, 1, 0, 0, 0]
+
+
+# Разделение данных
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, shuffle=42) 
+
+
+# Определяем модель для предсказания
+lr = LogisticRegression()
+
+
+# Ищем индексы столбцов с числами
+num_columns = X.select_dtypes('int').columns
+num_columns_indexes = X.columns.get_indexer(num_columns)
+
+
+# Ищем индексы столбцов с текстом
+text_columns = X.select_dtypes('object').columns
+text_columns_indexes = X.columns.get_indexer(text_columns)
+
+
+# Функция для работы с int
+def meta_num(X, y=None):
+    """Функция для тестирования работы с num"""
+    X[X.nonzero()] = X[X.nonzero()] + 100
+    return X
+
+transs1 = FunctionTransformer(meta_num)
+
+
+# Функция для работы с text
+def meta_text(X, y=None):
+    """Функция для тестирования работы с text"""
+    X[X.nonzero()] = X[X.nonzero()] + 1
+    return X 
+
+transs2 = FunctionTransformer(meta_text)
+
+
+# Создаём внутренний пайплайн для int
+num_pipe = Pipeline([('scaler', StandardScaler()), ('meta_add1', transs1)])
+
+
+# Создаём внутренний пайплайн для text
+text_pipe = Pipeline([('ohe', OneHotEncoder(handle_unknown="ignore")), ('meta_add2', transs2)])
+
+
+# Создаём ColumnTransformer
+preprocessor = ColumnTransformer([('tr1', num_pipe, num_columns_indexes),
+                        ('tr2', text_pipe, text_columns_indexes)])
+
+
+# Посмотрим на preprocessor(ColumnTransformer)
+preprocessor
