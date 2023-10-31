@@ -79,3 +79,16 @@ opt_search = optuna.integration.OptunaSearchCV(clf,
 
 # Let's get started 
 opt_search.fit(X_train, y_train)
+
+# Let's look at some statistics
+opt_search.trials_dataframe().drop(columns=['number',
+                                                   'user_attrs_mean_fit_time',
+                                                   'user_attrs_mean_score_time',
+                                                   'user_attrs_split0_test_score',
+                                                   'user_attrs_split1_test_score',
+                                                   'user_attrs_split2_test_score',
+                                                   'user_attrs_split3_test_score',
+                                                   'user_attrs_split4_test_score',
+                                                   'user_attrs_std_fit_time',
+                                                   'user_attrs_std_score_time',
+                                                   'value']).rename(columns={'user_attrs_mean_test_score': 'mean_test_score', 'user_attrs_std_test_score': 'std_test_score'})
