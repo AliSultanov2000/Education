@@ -92,3 +92,21 @@ opt_search.trials_dataframe().drop(columns=['number',
                                                    'user_attrs_std_fit_time',
                                                    'user_attrs_std_score_time',
                                                    'value']).rename(columns={'user_attrs_mean_test_score': 'mean_test_score', 'user_attrs_std_test_score': 'std_test_score'})
+
+
+# Load optuna search 
+opt_search_loaded = joblib.load('experiments.pkl')
+
+
+# Let's look at some statistics. Everything is work! 
+opt_search_loaded.trials_dataframe().drop(columns=['number',
+                                                   'user_attrs_mean_fit_time',
+                                                   'user_attrs_mean_score_time',
+                                                   'user_attrs_split0_test_score',
+                                                   'user_attrs_split1_test_score',
+                                                   'user_attrs_split2_test_score',
+                                                   'user_attrs_split3_test_score',
+                                                   'user_attrs_split4_test_score',
+                                                   'user_attrs_std_fit_time',
+                                                   'user_attrs_std_score_time',
+                                                   'value']).rename(columns={'user_attrs_mean_test_score': 'mean_test_score', 'user_attrs_std_test_score': 'std_test_score'})
