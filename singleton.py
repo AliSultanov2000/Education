@@ -38,3 +38,9 @@ df['y'] = y
 # Dataset
 df = df.sample(frac=1).reset_index(drop=True)
 df
+
+
+# Data separate
+X_train, X_test, y_train, y_test = train_test_split(df.drop(columns='y').copy(), 
+                                                    df['y'],
+                                                    test_size=0.2)
