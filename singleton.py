@@ -93,6 +93,7 @@ opt_search.trials_dataframe().drop(columns=['number',
                                                    'user_attrs_std_score_time',
                                                    'value']).rename(columns={'user_attrs_mean_test_score': 'mean_test_score', 'user_attrs_std_test_score': 'std_test_score'})
 
+joblib.dump(opt_search, 'experiments.pkl')
 
 # Load optuna search 
 opt_search_loaded = joblib.load('experiments.pkl')
