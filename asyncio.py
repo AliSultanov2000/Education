@@ -163,3 +163,10 @@ study = optuna.create_study(sampler=sampler,
                             study_name=study_name,
                             pruner=pruner)
 
+# START! 
+study.optimize(objective,   # What we have to optimize
+               n_trials=20,  # The number of trials 
+               timeout=5000)  # The time of optimizing 
+
+# Garbage collector 
+gc.collect()
