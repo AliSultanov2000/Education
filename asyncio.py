@@ -175,3 +175,12 @@ gc.collect()
 print("Best trial:", study.best_trial.number)
 print("Best accuracy:", study.best_trial.value)
 print("Best hyperparameters:", study.best_params)
+
+# Loading saved hyperparameter optimization
+try:
+    saved_study = optuna.load_study(study_name=study_name, storage=storage_url)
+    print("Best trial:", saved_study.best_trial.number)
+    print("Best value:", saved_study.best_trial.value)
+    print("Best hyperparameters:", saved_study.best_params)
+except Exception:
+    print('An error has occurred')
