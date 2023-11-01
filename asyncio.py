@@ -132,3 +132,10 @@ def objective(trial):
     score = np.mean(cv_scores)  # Mean for all folds 
     std = np.std(cv_scores)  # Std by all folds
 
+    # User attribute
+    trial.set_user_attr("score", score)
+    trial.set_user_attr("std", std)
+
+    # Return the metric 
+    return score
+
