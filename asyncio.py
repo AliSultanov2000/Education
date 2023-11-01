@@ -115,3 +115,9 @@ def objective(trial):
         "boosting_type": trial.suggest_categorical("boosting_type", ["Ordered", "Plain"]),
         "bootstrap_type": trial.suggest_categorical("bootstrap_type", ["Bayesian", "Bernoulli", "MVS"]),
                          }
+
+# Smart idea! 
+    if param_distribution["bootstrap_type"] == "Bayesian":
+        param_distribution["bagging_temperature"] = trial.suggest_float("bagging_temperature", 0, 10)
+    elif param_distribution["bootstrap_type"] == "Bernoulli":
+        param_distribution["subsample"] = trial.suggest_float("subsample", 0.1, 1)
