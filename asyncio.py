@@ -139,3 +139,12 @@ def objective(trial):
     # Return the metric 
     return score
 
+# Sampler: TPE
+sampler = optuna.samplers.TPESampler(seed=42)
+# DB Storage
+storage_url = "sqlite:///example.db"
+# study_name
+study_name = "cat_optimization"
+# Pruner using 
+pruner = SuccessiveHalvingPruner(min_resource=1, reduction_factor=2, min_early_stopping_rate=0)
+
