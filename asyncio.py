@@ -170,3 +170,8 @@ study.optimize(objective,   # What we have to optimize
 
 # Garbage collector 
 gc.collect()
+
+# Let's take a look at study params
+print("Best trial:", study.best_trial.number)
+print("Best accuracy:", study.best_trial.value)
+print("Best hyperparameters:", study.best_params)
