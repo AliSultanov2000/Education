@@ -121,3 +121,14 @@ def objective(trial):
         param_distribution["bagging_temperature"] = trial.suggest_float("bagging_temperature", 0, 10)
     elif param_distribution["bootstrap_type"] == "Bernoulli":
         param_distribution["subsample"] = trial.suggest_float("subsample", 0.1, 1)
+
+
+    # The model (Here we can use Pipeline, custom classes, def function)
+    model = CatBoostClassifier(**param_distribution, loss_function='MultiClass', verbose=False)
+
+    # Cross validation
+    kf = KFold(n_splits=5, shuffle=True, random_state=50)  # Set fold strategy
+    cv_scores = cross_val_score(model, X_train, y_train, cv=kf, scoring='f1_macro')  # Metric results for all folds
+    score = np.mean(cv_scores)  # Mean for all folds 
+    std = np.std(cv_scores)  # Std by all folds
+
