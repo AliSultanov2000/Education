@@ -148,3 +148,18 @@ study_name = "cat_optimization"
 # Pruner using 
 pruner = SuccessiveHalvingPruner(min_resource=1, reduction_factor=2, min_early_stopping_rate=0)
 
+sampler = optuna.samplers.TPESampler(seed=42)
+# DB Storage
+storage_url = "sqlite:///example.db"
+# study_name
+study_name = "cat_optimization"
+# Pruner using 
+pruner = SuccessiveHalvingPruner(min_resource=1, reduction_factor=2, min_early_stopping_rate=0)
+#Create a study 
+study = optuna.create_study(sampler=sampler,
+                            direction='maximize',
+                            storage=storage_url,
+                            load_if_exists=True,
+                            study_name=study_name,
+                            pruner=pruner)
+
