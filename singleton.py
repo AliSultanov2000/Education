@@ -26,3 +26,17 @@ from sklearn.model_selection import train_test_split, KFold, cross_val_score
 from sklearn.datasets import load_iris
 from sklearn.metrics import accuracy_score, f1_score
 
+# DataSet creation
+ar, y = make_classification(n_samples=10000, n_features=3, n_informative=2, 
+                           n_redundant=0, class_sep = 0.2, shuffle=False, 
+                           flip_y=0, n_clusters_per_class=2)
+
+
+# DataFrame, label
+df = pd.DataFrame(ar, columns = ['feat1', 'feat2', 'feat3'])
+df['y'] = y
+
+
+# Dataset
+df = df.sample(frac=1).reset_index(drop=True)
+df
