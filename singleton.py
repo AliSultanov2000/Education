@@ -76,6 +76,20 @@ X_train, X_test, y_train, y_test = train_test_split(df.drop(columns='y').copy(),
                                                     df['y'],
                                                     test_size=0.2)
 
+# 1. Define the Objective Function
+def objective(trial: optuna.Trial):
+    # Define hyperparameters
+    # Define model (Pipeline)
+    # Train and evaluate the model (cross-validation)
+    # Return the evaluation metric
+    pass
+
+# 2. Create a Study Object
+study = optuna.create_study(direction='maximize')
+
+# 3. Run the Optimization Process
+study.optimize(objective, n_trials=100)
+
 
 # Let's look at some statistics
 opt_search.trials_dataframe().drop(columns=['number',
