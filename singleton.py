@@ -98,7 +98,13 @@ def objective(trial: optuna.Trial):
     
     return (x - 5) ** 2  # Optimization function
 
-
+# Let's get started
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+	iris.data, 
+	iris.target, 
+	test_size=0.2, 
+	random_state=42
 study = optuna.create_study()
 study.optimize(objective, n_trials=100)
 # Let's look at some statistics
