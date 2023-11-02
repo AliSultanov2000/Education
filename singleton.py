@@ -90,7 +90,17 @@ study = optuna.create_study(direction='maximize')
 # 3. Run the Optimization Process
 study.optimize(objective, n_trials=100)
 
+# Example of function optimization with Optuna
+# In optuna you can optimize your custom function
 
+def objective(trial: optuna.Trial):
+    x = trial.suggest_float("x", -10, 10)  # hyperparameters
+    
+    return (x - 5) ** 2  # Optimization function
+
+
+study = optuna.create_study()
+study.optimize(objective, n_trials=100)
 # Let's look at some statistics
 opt_search.trials_dataframe().drop(columns=['number',
                                                    'user_attrs_mean_fit_time',
