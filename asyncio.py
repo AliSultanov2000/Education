@@ -148,3 +148,11 @@ results = model.train(
    epochs=20,  # The number of epochs
    batch=8,  # The number of batch during train
    name='yolov8_gun_detect'
+
+
+import ultralytics
+import torch
+import yaml
+from PIL import Image
+from ultralytics import YOLO
+import cv2
