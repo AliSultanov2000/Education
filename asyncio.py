@@ -104,8 +104,3 @@ async def main() -> None:
 # Запуск ассинхронной программы
 if __name__ == '__main__':
     asyncio.run(main())
-
-
-def stream_detection(video_path: str) -> None:
-    """Run inference and plot the result for video data"""
-    
