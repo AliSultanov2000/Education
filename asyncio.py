@@ -104,3 +104,19 @@ async def main() -> None:
 # Запуск ассинхронной программы
 if __name__ == '__main__':
     asyncio.run(main())
+
+
+def image_detection(image_path: str) -> None:
+    """Run inference and plot the result for image data"""
+                           
+    results = model.predict(image_path, save=True)  # Results list
+    
+    # Show the results
+    for result in results:
+        im_array = result.plot()  # Plot a BGR numpy array of predictions
+        im = Image.fromarray(im_array[..., ::-1])  # RGB PIL image
+        im.show()  # Show image
+
+
+# Test
+image_detection(r"D:\Software\Снимок11.PNG")
