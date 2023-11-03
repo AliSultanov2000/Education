@@ -140,3 +140,11 @@ def stream_detection(video_path: str) -> None:
 
 # Test
 stream_detection(r"C:\Users\1NR_Operator_33\Downloads\Поток машин на ТТК (Москва), весна-лето 2018.mp4")
+
+
+results = model.train(
+   data='custom_data.yaml',  # Path to the YAML file
+   imgsz=640,  # Image resize
+   epochs=20,  # The number of epochs
+   batch=8,  # The number of batch during train
+   name='yolov8_gun_detect'
