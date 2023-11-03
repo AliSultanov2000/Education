@@ -156,3 +156,10 @@ import yaml
 from PIL import Image
 from ultralytics import YOLO
 import cv2
+
+try:
+    model = YOLO('venv/Lib/site-packages/ultralytics/yolov8n.pt')  # ---> Модель скачал вручную в папку ultralytics
+    # model = YOLO('yolov8n.pt')  # ---> Для загрузки модели из GitHub репозитория моделей YOLO
+    print('Модель YOLO успешно загружена')
+except Exception:
+    print('Возникла ошибка при загрузке модели')
