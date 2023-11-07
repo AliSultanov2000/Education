@@ -8,10 +8,3 @@ class Singleton:
 
 
 
-results = model.train(
-   data='custom_data.yaml',  # Path to the YAML file
-   imgsz=640,  # Image resize
-   epochs=20,  # The number of epochs
-   batch=8,  # The number of batch during train
-   name='yolov8_gun_detection'
-)
