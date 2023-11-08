@@ -2,7 +2,7 @@
 1) Уметь в Data Engingering, ML Ops;     
 2) Иметь математический бэкграунд;   
 3) Писать код в VS Code; 
-4) Использовать garbage collector;
+4) Использовать garbage collector; yaml file;
 5) Писать код на уровне разработчика:
     - PEP8; 
     - DRY, KISS, YAGNI, BDUF;
