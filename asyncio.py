@@ -104,3 +104,6 @@ async def main() -> None:
 # Запуск ассинхронной программы
 if __name__ == '__main__':
     asyncio.run(main())
+
+# Просмотр выбранной статистики
+imp.statistics_
