@@ -56,3 +56,6 @@ example_data = np.array([[np.nan, 1, 2],
                             [5, 6, np.nan]])
 
 imp.fit_transform(example_data)
+
+# Просмотр выбранной статистики
+imp.statistics_
