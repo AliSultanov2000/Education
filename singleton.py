@@ -39,3 +39,10 @@ check_regularizarion(Lasso(), alphas)
 print('\nCoefficient for Ridge')
 check_regularizarion(Ridge(), alphas)
 gc.collect()
+
+# ElasticNet: example of creation model
+
+l1_ratios = list(np.linspace(0, 1, 5))  # l1_ratio: [0, 1]
+# For l1_ratio = 0 the penalty is an L2 penalty. For l1_ratio = 1 it is an L1 penalty
+print(f'l1_ratios = {l1_ratios}')
+elasticnet = ElasticNet(alpha=50, l1_ratio=0.5)  # Example
