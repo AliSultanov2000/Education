@@ -21,3 +21,31 @@ plt.ylabel('y')
 plt.grid()
 plt.legend()
 plt.show()
+
+
+plt.figure(figsize=(7, 5))
+
+x = range(11)  
+y1 = [i for i in x]  
+y2 = [i ** 2 for i in x]
+
+plt.plot(x, y1,
+         label='linear function',
+         linewidth=1.5,
+         marker='*', markersize=4,
+         color='red')
+
+plt.plot(x, y2,
+        label='quadratic function',
+        linewidth=1.5,  
+        marker='o', markersize=4,
+        color='green')
+
+plt.title('Example of simple graphs')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.xlim(0, 10)
+plt.ylim(0, 15) 
+plt.grid()
+plt.legend()
+plt.show()
