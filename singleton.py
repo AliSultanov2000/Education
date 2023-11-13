@@ -7,42 +7,14 @@ class Singleton:
         return cls.__instance
 
 
-plt.figure(figsize=(10, 5))
+vals = [24, 17, 53, 21, 35]
+labels = ["Ford", "Toyota", "BMW", "Audi", "Jaguar"]
+explode = (0, 0, 0.1, 0, 0)
 
-plt.subplot(1, 2, 1)
-plt.plot(x, y1,
-         label='linear function',
-         marker='*', markersize=4,
-         color='red')
+plt.pie(vals, labels=labels,
+        explode=explode,
+        autopct='%1.1f%%',
+        shadow=True)
 
-plt.title('Linear function')
-plt.xlabel('x', fontsize=14)
-plt.ylabel('y', fontsize=14)
-plt.grid()
-
-plt.subplot(1, 2, 2)
-plt.plot(x, y2,
-        label='quadratic function',  
-        marker='o', markersize=4,
-        color='green')
-
-plt.title('Quadratic function')
-plt.xlabel('x', fontsize=14)
-plt.ylabel('y', fontsize=14)
-plt.grid()
-
-
-labels = ['G1', 'G2', 'G3', 'G4', 'G5']
-men_means = [20, 34, 30, 35, 27]
-women_means = [25, 32, 34, 20, 25]
-
-x = np.arange(len(labels))  # the label locations
-width = 0.35  # the width of the bars
-
-plt.bar(x - width/2, men_means, width, label='Men')
-plt.bar(x + width/2, women_means, width, label='Women')
-
-
-
-plt.legend()
+plt.title("Распределение марок автомобилей на дороге")
 plt.show()
