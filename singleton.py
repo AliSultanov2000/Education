@@ -7,30 +7,16 @@ class Singleton:
         return cls.__instance
 
 
-vals = [24, 17, 53, 21, 35]
-labels = ["Ford", "Toyota", "BMW", "Audi", "Jaguar"]
-explode = (0, 0, 0.1, 0, 0)
+plt.bar([1, 2, 3], [10, 20, 30],
+        width=0.45,
+        alpha=0.6,  # Прозрачность,
+        color = ['red', 'green', 'blue']
+        )
 
-plt.pie(vals, labels=labels,
-        explode=explode,
-        autopct='%1.1f%%',
-        shadow=True)
-
-plt.title("Распределение марок автомобилей на дороге")
+plt.title('Simple barplot')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.xticks([1, 2, 3])
+plt.yticks([10, 20, 30, 40])
 plt.show()
-
-
-labels = ['G1', 'G2', 'G3', 'G4', 'G5']
-men_means = [20, 34, 30, 35, 27]
-women_means = [25, 32, 34, 20, 25]
-
-x = np.arange(len(labels))  # the label locations
-width = 0.35  # the width of the bars
-
-plt.bar(x - width/2, men_means, width, label='Men')
-plt.bar(x + width/2, women_means, width, label='Women')
-
-
-
-plt.legend()
 plt.show()
