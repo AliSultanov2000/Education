@@ -6,6 +6,18 @@ class Singleton:
             cls.__instance = super().__new__(cls)  # Запускаем __new__ от object, в противном случае не запускаем от object
         return cls.__instance
 
-import matplotlib.pyplot as plt
-import matplotlib.pylab as pylab
-import numpy as np
+
+
+
+# plt.rcParamsDefault.copy()  # Просмотр существующих rcParams
+
+matplotlib_params = {
+    'legend.fontsize': 'medium',
+    'lines.linewidth': 2,
+    'axes.grid': False,
+    'xtick.labelsize': 13,
+    'ytick.labelsize': 13,
+    'axes.labelsize': 14
+}
+
+pylab.rcParams.update(matplotlib_params)
