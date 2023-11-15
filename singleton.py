@@ -5,3 +5,7 @@ class Singleton:
         if cls.__instance is None:
             cls.__instance = super().__new__(cls)  # Запускаем __new__ от object, в противном случае не запускаем от object
         return cls.__instance
+
+import matplotlib.pyplot as plt
+import matplotlib.pylab as pylab
+import numpy as np
