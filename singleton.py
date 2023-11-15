@@ -7,22 +7,21 @@ class Singleton:
         return cls.__instance
 
 
-
-
-
-plt.figure(figsize=(7, 5))
-
 x = range(11)  
 y1 = [i for i in x]  
 y2 = [i ** 2 for i in x]
 
-plt.plot(x, y1, label='linear function', marker='*', markersize=4, color='red')
-plt.plot(x, y2, label='quadratic function',  marker='o', markersize=4, color='green')
+fig, axs = plt.subplots(1, 2, figsize=(12, 7))
+axs[0].plot(x, y1, label='linear function', marker='*', markersize=4, color='red')
 
-plt.title('Example of simple graphs')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.xlim(0, 10)
-plt.ylim(0, 15) 
-plt.legend()
+axs[0].set_xlabel('Linear', fontsize=14)
+axs[0].set_ylabel('Value', fontsize=14)
+axs[0].set_title('First graph')
+
+axs[1].plot(x, y2, label='quadratic function', marker='o', markersize=4, color='green')
+
+axs[1].set_xlabel('Quadratic', fontsize=14)
+axs[1].set_ylabel('Value', fontsize=14)
+axs[1].set_title('Second graph')
+
 plt.show()
