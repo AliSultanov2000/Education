@@ -8,16 +8,17 @@ class Singleton:
 
 
 
+plt.figure(figsize=(7, 5))
 
-# plt.rcParamsDefault.copy()  # Просмотр существующих rcParams
+x = range(20)  
+y = [i ** 2 for i in x]
 
-matplotlib_params = {
-    'legend.fontsize': 'medium',
-    'lines.linewidth': 2,
-    'axes.grid': False,
-    'xtick.labelsize': 13,
-    'ytick.labelsize': 13,
-    'axes.labelsize': 14
-}
+plt.plot(x, y,
+        label='quadratic function',  linewidth=1,
+        marker='o', markersize=4)
 
-pylab.rcParams.update(matplotlib_params)
+plt.title('Example of graph')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.show()
