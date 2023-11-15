@@ -7,20 +7,4 @@ class Singleton:
         return cls.__instance
 
 
-plt.figure(figsize=(10, 5))
 
-plt.subplot(1, 2, 1)
-plt.plot(x, y1, label='linear function', marker='*', markersize=4, color='red')
-
-plt.title('Linear function')
-plt.xlabel('x', fontsize=14)
-plt.ylabel('y', fontsize=14)
-plt.grid()
-
-plt.subplot(1, 2, 2)
-plt.plot(x, y2, label='quadratic function',  marker='o', markersize=4, color='green')
-
-plt.title('Quadratic function')
-plt.xlabel('x', fontsize=14)
-plt.ylabel('y', fontsize=14)
-plt.grid()
