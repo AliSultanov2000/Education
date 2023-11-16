@@ -8,3 +8,18 @@ class Singleton:
 
 
 
+# plt.rcParamsDefault.copy()  # Просмотр существующих rcParams
+
+matplotlib_params = {
+    'legend.fontsize': 'medium',
+    'lines.linewidth': 2,
+    # 'axes.grid': False,
+    'xtick.labelsize': 13,
+    'ytick.labelsize': 13,
+    'axes.labelsize': 14,
+    'axes.titlesize': 14,
+    "legend.fancybox": True,
+    'legend.loc': 'best'
+}
+
+pylab.rcParams.update(matplotlib_params)
