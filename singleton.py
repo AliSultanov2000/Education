@@ -23,3 +23,8 @@ matplotlib_params = {
 }
 
 pylab.rcParams.update(matplotlib_params)
+
+fig, ax = plt.subplots()
+ax.set(title='Example of graph', xlabel='x', ylabel='y')
+ax.plot(x, y, label='quadratic function')
+ax.legend();
