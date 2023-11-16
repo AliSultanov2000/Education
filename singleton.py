@@ -28,3 +28,9 @@ fig, ax = plt.subplots()
 ax.set(title='Example of graph', xlabel='x', ylabel='y')
 ax.plot(x, y, label='quadratic function')
 ax.legend();
+
+fig, ax = plt.subplots()
+ax.set(title='Example of simple graphs', xlabel='x', ylabel='y', xlim=(0, 10), ylim=(0, 15))
+ax.plot(x, y1, label='linear function')
+ax.plot(x, y2, label='quadratic function')
+ax.legend();
