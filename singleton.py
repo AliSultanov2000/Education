@@ -47,3 +47,14 @@ l1_ratios = list(np.linspace(0, 1, 5))  # l1_ratio: [0, 1]
 # For l1_ratio = 0 the penalty is an L2 penalty. For l1_ratio = 1 it is an L1 penalty
 print(f'l1_ratios = {l1_ratios}')
 elasticnet = ElasticNet(alpha=50, l1_ratio=0.5)  # Example
+
+
+from sklearn.impute import SimpleImputer
+
+
+imp = SimpleImputer(missing_values=np.nan, strategy='mean')
+example_data = np.array([[np.nan, 1, 2],
+                            [3, np.nan, 4],
+                            [5, 6, np.nan]])
+
+imp.fit_transform(example_data)
