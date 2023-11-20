@@ -135,3 +135,7 @@ from nltk.stem import SnowballStemmer # Стемминг
 # Пример стеммера из nltk (Этот стеммер наиболее новый)
 stemmer = SnowballStemmer('english')
 stemmer.stem('Building')
+
+words = 'Today was very gorgeous day! I will be in mall and buy a lot of purchases'
+review = [stemmer.stem(word) for word in words.split()]
+print(review)
