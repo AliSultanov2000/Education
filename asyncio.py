@@ -123,3 +123,8 @@ def spell_check(text: str):
 text = "He how are you? i am finee"
 
 spell_check(text)
+
+# Пример 2: через list comprehensive
+text = 'He how are you? i am finee'
+
+[SpellChecker().correction(word) for word in text.split()]
