@@ -128,3 +128,10 @@ spell_check(text)
 text = 'He how are you? i am finee'
 
 [SpellChecker().correction(word) for word in text.split()]
+
+from nltk.stem import SnowballStemmer # Стемминг
+
+
+# Пример стеммера из nltk (Этот стеммер наиболее новый)
+stemmer = SnowballStemmer('english')
+stemmer.stem('Building')
