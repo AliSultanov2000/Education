@@ -139,3 +139,9 @@ stemmer.stem('Building')
 words = 'Today was very gorgeous day! I will be in mall and buy a lot of purchases'
 review = [stemmer.stem(word) for word in words.split()]
 print(review)
+
+import numpy as np
+
+train_docs = np.array(['The sun is shining', 
+                 'The weather is sweet', 
+                 'The sun is shining and the weather is sweet, and one and one is two'])
