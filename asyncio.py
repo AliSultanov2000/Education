@@ -104,3 +104,22 @@ async def main() -> None:
 # Запуск ассинхронной программы
 if __name__ == '__main__':
     asyncio.run(main())
+
+from spellchecker import SpellChecker
+
+# Пример 1: через ф-ю
+
+def spell_check(text: str):
+    """Функция для устранения орфографических ошибок в тексте.
+       Запускается от apply"""
+    result = []
+    spell = SpellChecker()
+    for word in text.split():
+        correct_word = spell.correction(word)
+        result.append(correct_word)
+    return result
+
+#Test
+text = "He how are you? i am finee"
+
+spell_check(text)
