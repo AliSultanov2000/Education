@@ -145,3 +145,9 @@ import numpy as np
 train_docs = np.array(['The sun is shining', 
                  'The weather is sweet', 
                  'The sun is shining and the weather is sweet, and one and one is two'])
+
+from sklearn.feature_extraction.text import CountVectorizer 
+
+count_vectorizer1 = CountVectorizer()  # Реализует концепцию мешка слов
+vectors1 = count_vectorizer1.fit_transform(train_docs)  # Сначала запускается метод fit, а далее запускается метод transform, который return-ит вектор для каждого текста; При вызове fit получается вокабуляр слов
+vectors1
