@@ -162,3 +162,19 @@ def image_detection(image_path: str) -> None:
 
 # Test
 image_detection(CONFIG_DATA['image_predict_path'])
+
+
+def load_config_data(data_path: str) -> dict: 
+    """Функция для загрузки всех данных из конфигурационного файла yaml"""
+    try:
+        with open(data_path, 'r', encoding='utf8') as file:
+            config_data = yaml.safe_load(file)
+            return config_data
+        
+    except FileNotFoundError:
+        print('Ошибка при загрузке конфигурационного файла')
+
+
+# Загрузка всех переменных из конфигурационного файла
+CONFIG_DATA = load_config_data('config.yaml')
+print(CONFIG_DATA)
