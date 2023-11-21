@@ -148,3 +148,17 @@ results = model.train(
    batch=CONFIG_DATA['batch'],  # The number of batch during train
    name=CONFIG_DATA['name']  # The name of trained model
    )
+
+def image_detection(image_path: str) -> None:
+    """Run inference and plot the result for image data"""
+                           
+    results = model.predict(image_path)  # Results list
+    # Show the results
+    for result in results:
+        im_array = result.plot()  # Plot a BGR numpy array of predictions
+        im = Image.fromarray(im_array[..., ::-1])  # RGB PIL image
+        im.show()  # Show image
+
+
+# Test
+image_detection(CONFIG_DATA['image_predict_path'])
