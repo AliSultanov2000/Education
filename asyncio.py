@@ -140,3 +140,11 @@ def stream_detection(video_path: str) -> None:
 
 # Test
 stream_detection(CONFIG_DATA['video_predict_path'])
+
+results = model.train(
+   data=CONFIG_DATA['data'],  # Path to the YAML file
+   imgsz=CONFIG_DATA['imgsz'],  # Image resize
+   epochs=CONFIG_DATA['epochs'],  # The number of epochs
+   batch=CONFIG_DATA['batch'],  # The number of batch during train
+   name=CONFIG_DATA['name']  # The name of trained model
+   )
