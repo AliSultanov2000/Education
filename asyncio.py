@@ -178,3 +178,5 @@ def load_config_data(data_path: str) -> dict:
 # Загрузка всех переменных из конфигурационного файла
 CONFIG_DATA = load_config_data('config.yaml')
 print(CONFIG_DATA)
+
+# pretrained_model = YOLO(CONFIG_DATA['load_path'])
