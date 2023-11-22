@@ -39,3 +39,17 @@ from nltk.tokenize import word_tokenize
 
 # Пример работы токенизатора от nltk
 word_tokenize('Messi is the most cool footballist in the world')
+
+# Стоп-слова в nltk
+from nltk.corpus import stopwords
+
+
+STOP_WORDS_ENGLISH = stopwords.words('english')
+print('Stop words in english language:')
+print(STOP_WORDS_ENGLISH)
+print(len(STOP_WORDS_ENGLISH))
+
+print('Stop words in Russian language:')
+STOP_WORDS_RUSSIAN = stopwords.words('russian')
+print(STOP_WORDS_RUSSIAN)
+print(len(STOP_WORDS_RUSSIAN))
