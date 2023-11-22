@@ -34,3 +34,8 @@ def symbols_remove(text: str) -> str:
 
 
 symbols_remove('Привет, как дела? Сегодня я ходил за покупками в Сбермакет 131412')
+
+from nltk.tokenize import word_tokenize
+
+# Пример работы токенизатора от nltk
+word_tokenize('Messi is the most cool footballist in the world')
