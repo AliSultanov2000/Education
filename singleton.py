@@ -19,3 +19,18 @@ for i, (train_idx, test_idx) in enumerate(kf.split(X)):
     print("TRAIN idxs:", train_idx, "TEST idxs:", test_idx)
     print(f'X train for all folds:\n {X_train}')
     print(f'y_train for all folds:\n {y_train}\n')
+
+
+def symbols_remove(text: str) -> str:
+    """
+        Удаление всех символов, кроме слов.
+        Функция запускается c apply для всего корпуса
+       """
+    link_process = re.sub(r"http://\S+|https://\S+", "", text)  # Удаление ссылок
+    garbage_process = re.sub(r'([^\s\w])', '', link_process)  # Удаление мусора (оставляем слова и цифры)
+    word_process = re.sub(r'\w*\d+\w*', ' ', garbage_process)  # Оставляем только слова
+    output_text = re.sub('\s+', ' ', word_process).strip().lower()  # Удаление пробелов, перевод регистра
+    return re.sub(r'\n', '', output_text)
+
+
+symbols_remove('Привет, как дела? Сегодня я ходил за покупками в Сбермакет 131412')
