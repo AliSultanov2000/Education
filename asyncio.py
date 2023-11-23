@@ -105,48 +105,5 @@ async def main() -> None:
 if __name__ == '__main__':
     asyncio.run(main())
 
-
-
-from sklearn.model_selection import validation_curve, learning_curve, KFold, ValidationCurveDisplay, LearningCurveDisplay
-import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
-from sklearn.svm import SVC
-
-# Train test split
-X, y = load_iris(return_X_y=True)
-X_train, X_Test, y_train, y_test = train_test_split(X, y, shuffle=True, random_state=50)
-
-# Set param_range
-param_range = np.logspace(-7, 3, 3)
-
-# Cross-validation
-kf = KFold(n_splits=5, shuffle=True, random_state=50)
-
-# load model
-classifier = SVC(kernel="linear")
-
-# VALIDATION CURVE 1 
-train_scores1, valid_scores1 = validation_curve(classifier,
-                                                X_train, y_train,
-                                                param_name="C",
-                                                param_range=param_range,
-                                                cv=kf,
-                                                scoring="f1_macro")
-
-
-print(f'Train scoring (valid curve) for n_splits=5:\n{train_scores1}\n')
-print(f'Valid scoring (valid curve) for n_splits=5:\n{valid_scores1}')
-
-# LEARNING CURVE 1
-
-# Set train sizes 
-train_sizes = [33, 50, 89]
-
-train_sizes, train_scores2, valid_scores2 = learning_curve(classifier,
-                                                           X_train, y_train,
-                                                           train_sizes=train_sizes,
-                                                           cv=kf,
-                                                           scoring='f1_macro')
-
 print(f'Train scoring (learning curve) for n_splits=5:\n{train_scores2}\n')
 print(f'Valid scoring (learning curve) for n_splits=5:\n{valid_scores2}')
