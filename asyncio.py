@@ -107,3 +107,20 @@ if __name__ == '__main__':
 
 
 
+from sklearn.model_selection import validation_curve, learning_curve, KFold, ValidationCurveDisplay, LearningCurveDisplay
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.svm import SVC
+
+# Train test split
+X, y = load_iris(return_X_y=True)
+X_train, X_Test, y_train, y_test = train_test_split(X, y, shuffle=True, random_state=50)
+
+# Set param_range
+param_range = np.logspace(-7, 3, 3)
+
+# Cross-validation
+kf = KFold(n_splits=5, shuffle=True, random_state=50)
+
+# load model
+classifier = SVC(kernel="linear")
