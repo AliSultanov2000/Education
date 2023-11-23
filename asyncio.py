@@ -124,3 +124,15 @@ kf = KFold(n_splits=5, shuffle=True, random_state=50)
 
 # load model
 classifier = SVC(kernel="linear")
+
+# VALIDATION CURVE 1 
+train_scores1, valid_scores1 = validation_curve(classifier,
+                                                X_train, y_train,
+                                                param_name="C",
+                                                param_range=param_range,
+                                                cv=kf,
+                                                scoring="f1_macro")
+
+
+print(f'Train scoring (valid curve) for n_splits=5:\n{train_scores1}\n')
+print(f'Valid scoring (valid curve) for n_splits=5:\n{valid_scores1}')
