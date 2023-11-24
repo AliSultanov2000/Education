@@ -105,5 +105,11 @@ async def main() -> None:
 if __name__ == '__main__':
     asyncio.run(main())
 
-print(f'Train scoring (learning curve) for n_splits=5:\n{train_scores2}\n')
-print(f'Valid scoring (learning curve) for n_splits=5:\n{valid_scores2}')
+
+
+# Кодирование меток в числа 0, 1, 2...
+from sklearn.preprocessing import LabelEncoder
+
+enc_data = ['Белый', 'Чёрный', 'Жёлтый', 'Синий', 'Красный', 'Зелёный']
+color_le = LabelEncoder()
+color_le.fit_transform(enc_data)
