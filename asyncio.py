@@ -106,12 +106,7 @@ if __name__ == '__main__':
     asyncio.run(main())
 
 
-
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import OneHotEncoder
-
-enc_data = pd.DataFrame(data=['Белый', 'Черный', 'Белый', 'Зеленый'], columns=['Цвет'])
-                    
-ohe = OneHotEncoder(sparse=False)
-ohe.fit_transform(enc_data)
+df = pd.DataFrame(data=['Белый', 'Черный', 'Белый', 'Зеленый'], columns=['color'])
+frequency = df['color'].value_counts()
+df['enc_data'] = df['color'].map(frequency)
+df
