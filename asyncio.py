@@ -107,9 +107,6 @@ if __name__ == '__main__':
 
 
 
-# Кодирование меток в числа 0, 1, 2...
-from sklearn.preprocessing import LabelEncoder
-
-enc_data = ['Белый', 'Чёрный', 'Жёлтый', 'Синий', 'Красный', 'Зелёный']
-color_le = LabelEncoder()
-color_le.fit_transform(enc_data)
+# Далее обученный LabelEncoder можно использовать в prod-e
+# ВАЖНО: чтобы все новые метки в prode присутствовали на обучающем наборе
+color_le.transform(['Красный', 'Белый'])
