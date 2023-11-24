@@ -107,6 +107,11 @@ if __name__ == '__main__':
 
 
 
-# Далее обученный LabelEncoder можно использовать в prod-e
-# ВАЖНО: чтобы все новые метки в prode присутствовали на обучающем наборе
-color_le.transform(['Красный', 'Белый'])
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import OneHotEncoder
+
+enc_data = pd.DataFrame(data=['Белый', 'Черный', 'Белый', 'Зеленый'], columns=['Цвет'])
+                    
+ohe = OneHotEncoder(sparse=False)
+ohe.fit_transform(enc_data)
