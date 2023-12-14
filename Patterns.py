@@ -62,3 +62,18 @@ opt_search.trials_dataframe().drop(columns=['number',
                                                    'user_attrs_std_fit_time',
                                                    'user_attrs_std_score_time',
                                                    'value']).rename(columns={'user_attrs_mean_test_score': 'mean_test_score', 'user_attrs_std_test_score': 'std_test_score'})
+
+
+# 1. Define the Objective Function
+def objective(trial: optuna.Trial):
+    # Define hyperparameters
+    # Define model (Pipeline)
+    # Train and evaluate the model (cross-validation)
+    # Return the evaluation metric
+    pass
+
+# 2. Create a Study Object
+study = optuna.create_study(direction='maximize')
+
+# 3. Run the Optimization Process
+study.optimize(objective, n_trials=100)
