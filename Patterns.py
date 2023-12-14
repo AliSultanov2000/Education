@@ -19,62 +19,32 @@ class Singleton:
         return cls.__instance
 
 
-class LogisticRegression: 
-    def __init__(self, max_iter: int, learning_step: float,  epsilon: float,  treshold=0.5):
-        self.max_iter = max_iter
-        self.learning_step = learning_step
-        self.epsilon = epsilon
-        self.treshold = treshold
+# In this case we can use Pipeline (inner and outer), ColumnTransformer, custom classes, custom def function in Pipeline, bu we selected simple example to show OptunaSearchCV
 
-        self._weights = None
-        self.next_weights = None
-        self.current_weights = None
-
-        
-    def predict_proba(self, X: np.array):
-        z = (X @ self.current_weights)
-        return 1 / np.exp(-z)
-        
-
-    def predict(self, X: np.array):
-        probabilities = self.predict_proba(X)
-        return np.fromiter((1 if probability > 0.5 else 0 for probability in probabilities), dtype='int8')
+# KFold strategy
+kf = KFold(n_splits=5, shuffle=True, random_state=50)
 
 
-    def fit(self, X: np.array, y: np.array):
-        n_objects = X.shape[0]
-        n_features = X.shape[1]
-        self._weights = np.zeros(n_features)
+# Define the model
+clf = CatBoostClassifier(verbose=False)
 
-        self.next_weights = self._weights        
-        for iter in range(self.max_iter):
-            self.current_weights = self.next_weights
-            # Get predict proba
-            y_pred_pr = self.predict_proba(X)
-            # Logloss calculation
-            logloss = - np.sum(y * np.log(y_pred_pr + 1e-9) + (1 - y) * np.log(1 - y_pred_pr +  1e-9)) / n_objects
 
-            # Get predict
-            y_pred = self.predict(X) 
-            # Gradients
-            gradients = X.T @ (y - y_pred)
-            # Weights updation
-            self.next_weights = self.current_weights - self.learning_step * gradients
+# Define param distribution
+# IMPORTANT: IN param_distrs we can use only optuna.distribution! For instance, we can't use list, np.array and e.t.c.
+param_distrs = {
+                'min_data_in_leaf': optuna.distributions.IntDistribution(1, 10),
+                'iterations': optuna.distributions.IntDistribution(800, 1200, 100),
+                }
 
-            # Остановка когда достигнута необходимая степень точности
-            print(f"Итерация: {iter}")
-            print(f"Текущая точка {self.current_weights} | Следующая точка {self.next_weights}")
-            print(f"Logloss {logloss}")
-            print("--------------------------------------------------------")
 
-            # If weights updation - small then exit from loop
-            difference_weights_norm = np.linalg.norm(self.next_weights  - self.current_weights, ord=2)
-            if difference_weights_norm <= self.epsilon: 
-                break
-        
-        print(f'Найденные веса, обеспечивающие минимум функции потерь: {self.current_weights}')
-        # Сохранение весов в классе
-        
+# OptunaSearchCV 
+opt_search = optuna.integration.OptunaSearchCV(clf,
+                                               param_distrs,
+                                               cv=kf,
+                                               scoring='f1',
+                                               n_trials=10,  # Important parameters! In total we have 10 combination of hyperparameters and it's all
+                                               timeout=100)  # Important parameters! In total trial time = 100 second
 
-lr = LogisticRegression(100, 0.1, 0.001)
-lr.fit(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), np.array([1, 2, 3]))
+
+# Let's get started 
+opt_search.fit(X_train, y_train)
