@@ -19,10 +19,3 @@ class Singleton:
         return cls.__instance
 
 
-
-from sklearn.model_selection import validation_curve, learning_curve, KFold, ValidationCurveDisplay, LearningCurveDisplay
-import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
-from sklearn.svm import SVC
-
-# Train test spli
