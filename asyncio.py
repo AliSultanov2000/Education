@@ -105,4 +105,75 @@ async def main() -> None:
 if __name__ == '__main__':
     asyncio.run(main())
 
+class YoloTracker(YoloModel):
+    """Класс YOLOv8 для задачи трекинга объектов"""
+
+    def __init__(self, model_path):
+        super().__init__(model_path)
+
+
+    def image_tracking(self, image_path: str) -> None: 
+        """Предсказание модели на изображении"""
+        
+        # Список с результатами
+        results = self.model.track(image_path, persist=True)
+        # Отображение на экран
+        annotated_frame = self._box_plotting(results)
+        cv2.imshow("Sharp eye", annotated_frame)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+ 
+        
+    def stream_tracking(self, video_path: str, cls_display: Display) -> None: 
+        """Предсказание модели на видеопотоке"""
+
+        # Открытие видео файла 
+        cap = cv2.VideoCapture(video_path)
+        frame_count = 0
+        assert cap.isOpened()
+
+        # Цикл по видео фрейму
+        while cap.isOpened():
+            cls_display.start_time = time()
+            # Считывание фрейма из видео
+            success, frame = cap.read()
+
+            if success:
+                # Запуск YOLOv8 трекера
+                results = self.model.track(frame, persist=True)
+                # Отображение на экране box-ов
+                annotated_frame = self._box_plotting(results) 
+
+                # Вывод времени работы, fps, эмблемы на дисплей
+                cls_display.working_time_display(annotated_frame)
+                cls_display.fps_display(annotated_frame)
+                cls_display.logotype_display(annotated_frame)
+                cls_display.target_aiming_display(annotated_frame, 640, 360)  # Координаты x_center, y_center 
+
+                # Вывод кадра на экран
+                cv2.imshow('Sharp eye', annotated_frame)
+                frame_count += 1
+                # Остановка цикла при нажатии "q"
+                if cv2.waitKey(1) & 0xFF == ord("q"):
+                    break
+            else:
+                # Остановка цикла, если видео закончено
+                break
+        
+        # Закрытие видеопотока 
+        cap.release()
+        cv2.destroyAllWindows()
+
+
+
+if __name__ == '__main__':
+    # Cоздание экземпляра класса
+    tracker = YoloTracker(r"C:\Users\1NR_Operator_33\runs\detect\yolov8_tank_detection42\weights\best.pt")
+    # tracker.model.names[0] = 'Танк'
+    print(f'Загружена модель: {tracker.model_path}')
+    print(f'Используемый девайс: {tracker.device}')
+
+
+    # Запуск на трекиг видеопотока
+    tracker.stream_tracking(r"C:\Users\1NR_Operator_33\Downloads\танк Т90м Прорыв лучший танк в мире в бою.mp4", Display())
 
