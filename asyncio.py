@@ -106,7 +106,3 @@ if __name__ == '__main__':
     asyncio.run(main())
 
 
-df = pd.DataFrame(data=['Белый', 'Черный', 'Белый', 'Зеленый'], columns=['color'])
-frequency = df['color'].value_counts()
-df['enc_data'] = df['color'].map(frequency)
-df
