@@ -71,3 +71,63 @@ class YoloModel:
             cv2.drawMarker(annotated_frame, (x, y), (0, 0, 255), cv2.MARKER_CROSS, 15, 2)
 
         return annotated_frame 
+
+
+class YoloTracker(YoloModel):
+    """Класс YOLOv8 для задачи трекинга объектов"""
+
+    def __init__(self, model_path):
+        super().__init__(model_path)
+
+
+    def image_tracking(self, image_path: str) -> None: 
+        """Предсказание модели на изображении"""
+        # Список с результатами
+        results = self.model.track(image_path, persist=True)
+        # Отображение на экран
+        annotated_frame = self._box_plotting(results)
+        cv2.imshow("Sharp eye", annotated_frame)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+
+    def stream_tracking(self, video_path: str, cls_display: Display) -> None: 
+        """Предсказание модели на видеопотоке"""
+
+        # Открытие видео файла 
+        cap = cv2.VideoCapture(video_path)
+        frame_count = 0
+        assert cap.isOpened()                          
+        
+        # Цикл по видео фрейму
+        while cap.isOpened():
+            cls_display.start_time = time()
+            # Считывание фрейма из видео
+            success, frame = cap.read()
+
+            if success:
+                # Запуск YOLOv8 трекера
+                results = self.model.track(frame, persist=True)
+                # Отображение на экране box-ов
+                annotated_frame = self._box_plotting(results) 
+
+                # Вывод времени работы, fps, эмблемы на дисплей
+                cls_display.working_time_display(annotated_frame)
+                cls_display.fps_display(annotated_frame)
+                cls_display.logotype_display(annotated_frame)
+                cls_display.project_name_display(annotated_frame, 640, 360)
+                cls_display.target_aiming_display(annotated_frame, 640, 360)  # Координаты x_center, y_center
+
+                # Вывод кадра на экран
+                cv2.imshow('YOLOv8 tracker', annotated_frame)
+                frame_count += 1
+                # Остановка цикла при нажатии "q"
+                if cv2.waitKey(1) & 0xFF == ord("q"):
+                    break
+            else:
+                # Остановка цикла, если видео закончено
+                break
+        
+        # Закрытие видеопотока
+        cap.release()
+        cv2.destroyAllWindows()
