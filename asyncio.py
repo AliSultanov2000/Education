@@ -137,3 +137,8 @@ class MyCNNClassifier(nn.Module):
         x = self.decoder(x)
         
         return x
+
+
+# Посмотрим на архитектуру модели
+cnn = MyCNNClassifier(5, 10)
+print(cnn)
