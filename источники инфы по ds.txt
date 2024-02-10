@@ -1,6 +1,6 @@
 YouTube channels:
 - Russian channels:
-    - ИУ5;
+    - ИУ5 (GitHub репозиторий); 
     - Лекции дата-шрушера; 
     - machine learrrning; 
     - miracl6; 
