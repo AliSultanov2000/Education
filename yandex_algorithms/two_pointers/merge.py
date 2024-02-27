@@ -16,6 +16,24 @@ def merge(nums1, nums2):
     return merged
 
 
+def merge_two_list(nums1: list[int], nums2: list[int]):
+    """Методе двух указателей. Работает также с неотсортированным массивом."""
+    sorted_arr = []
+    i = j = 0
+    while i < len(nums1) and j < len(nums2):
+        if nums1[i] < nums2[j]:
+            sorted_arr.append(nums1[i])
+            i += 1
+        else: 
+            sorted_arr.append(nums2[j])
+            j += 1
+    if i < len(nums1):
+        sorted_arr += nums1[i:]
+    elif j < len(nums2):
+        sorted_arr += nums2[j:]
+    return sorted_arr
+
+
 
 if __name__ == '__main__':
     print(merge([5, 10, 453, 423423], [1, 2, 3, 4, 6]))
