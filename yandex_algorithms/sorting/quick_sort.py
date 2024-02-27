@@ -1,5 +1,5 @@
 def quick_sort(nums: list[int]):
-    if len(nums) == 0:
+    if len(nums) <= 1:
         return nums
 
     element = nums[0]
