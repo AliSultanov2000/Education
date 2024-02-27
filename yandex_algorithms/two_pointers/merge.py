@@ -17,7 +17,7 @@ def merge(nums1, nums2):
 
 
 def merge_two_list(nums1: list[int], nums2: list[int]):
-    """Методе двух указателей. Работает также с неотсортированным массивом."""
+    """Методе двух указателей"""
     sorted_arr = []
     i = j = 0
     while i < len(nums1) and j < len(nums2):
