@@ -1,4 +1,3 @@
-
 class CustomLogisticRegression:
     """Реализация логистической регрессии"""
 
