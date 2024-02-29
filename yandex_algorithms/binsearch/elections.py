@@ -27,10 +27,16 @@ def getcntvotes(i, voters, suffixsum, level):
         m = (l + r) // 2
         if voters[m][0] < level:
             l = m + 1
+        else:
+            r = m
+    if voters[l][0] < level:
+        return 0
+    cntvotes = suffixsum[l] - level * (len(voters) - l)
+    if voters[i][0] >= level: 
+        cntvotes -= (voters[i][0] - level)
+    return cntvotes
 
-
-
-
+ 
 def model(voters, i, suffixsum):
     """
        Определение кол-ва денег для победы i-ой партии.
@@ -77,3 +83,21 @@ for i in range(n):
 
 
 # восстановление и вывод ответа
+winner, cost, level, recovery = ans
+resvotes = [0] * n
+for i in range(n):
+    if i == winner:
+        resvotes[voters[i][1]] = voters[i][0] + cost
+    elif voters[i][0] <= level:
+        resvotes[voters[i][1]] = voters[i][0]
+    else: 
+        if recovery > 0: 
+            resvotes[voters[i][1]] = level + 1
+            recovery -= 1
+        else: 
+            resvotes[voters[i][1]] = level
+
+ 
+print(mincost)
+print(voters[winner][1] + 1)
+print(*resvotes)
