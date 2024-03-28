@@ -12,7 +12,7 @@ def sol(nums, k):
             lastk.remove(nums[i - k])
     return False
 
-n, k = map(int, input().split())
+k = int(input())
 nums = list(map(int, input().split()))
 
 if sol(nums, k):
